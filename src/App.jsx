@@ -6,16 +6,20 @@ export default function App() {
   const [data, setData] = useState();
   const [favorite, setFavorite] = useState();
   const [name, setName] = useState();
+  const [num, setNum] = useState()
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
   const searchPokemon = (event) => {
     axios.get(url).then((response) => {
       setData(response.data);
     });
-    console.log(data);
+    if(event.key === 'enter'){
+      axios.get(url).then((response) => {
+        setData(response.data);
+      });
+    }
   };
-  // data.sprites.front_default
-  
+
   return (
     <>
       <div className="header">
@@ -26,6 +30,13 @@ export default function App() {
             className="searchBar"
             placeholder="Enter a pokemon name"
             onChange={(event) => setName(event.target.value.toLowerCase())}
+            onKeyPress = {searchPokemon}
+          />
+          <input
+            type="number"
+            className="moveNum"
+            placeholder="# moves displayed"
+            onChange={(event) => setNum(event.target.value)}
           />
           <button className="search" onClick={searchPokemon}>
             SEARCH
@@ -42,30 +53,24 @@ export default function App() {
         />
       </div>
       <div className="types">
-        <button className="type1">{data ? <p>{data.types[0].type.name}</p> : null}</button>
-        <button className="type2">{data ? <p>{data.types[1].type.name}</p> : null}</button>
+        {data?.types.map((item, index) => <button className="type1" key = {index}>{item.type.name}</button>)}
       </div>
       <div className="content">
         <div className="imgs">
           <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/6.png"
-            alt="pokemon shiny img"
+            src={data ? data.sprites.front_shiny : null}
             className="picture-shiny"
           />
           <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-            alt="pokemon normal img"
+            src={data ? data.sprites.front_default : null}
             className="picture"
           />
         </div>
         <div className="moves">
           <ul>
-            <li>| swords-dance |</li>
-            <li>| cut |</li>
-            <li>| wing-attack |</li>
+            {data?.moves.slice(0, num).map ((item, index) => <li key = {index < 5}>| {item.move.name} |</li>)}
           </ul>
         </div>
-        {/* <div>{data.types}</div> */}
       </div>
     </>
   );

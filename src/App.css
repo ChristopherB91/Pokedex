@@ -49,3 +49,7 @@ ul{
     flex-wrap: wrap;
     font-size: 35px;
 }
+
+.moveNum{
+  width: 30px;
+}
