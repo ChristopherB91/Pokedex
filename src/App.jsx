@@ -9,18 +9,13 @@ export default function App() {
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
   const searchPokemon = (event) => {
-    if(event.key === 'Enter'){
-      axios.get(url).then((response) => {
-        setData(response.data);
-        console.log(response.data);
-      });
-    }
     axios.get(url).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
+    console.log(data);
   };
-
+  // data.sprites.front_default
+  
   return (
     <>
       <div className="header">
@@ -31,7 +26,6 @@ export default function App() {
             className="searchBar"
             placeholder="Enter a pokemon name"
             onChange={(event) => setName(event.target.value.toLowerCase())}
-            onKeyPress = {searchPokemon}
           />
           <button className="search" onClick={searchPokemon}>
             SEARCH
@@ -48,8 +42,8 @@ export default function App() {
         />
       </div>
       <div className="types">
-        <button className="type1">Fire</button>
-        <button className="type2">Flying</button>
+        <button className="type1">{data ? <p>{data.types[0].type.name}</p> : null}</button>
+        <button className="type2">{data ? <p>{data.types[1].type.name}</p> : null}</button>
       </div>
       <div className="content">
         <div className="imgs">
@@ -66,15 +60,12 @@ export default function App() {
         </div>
         <div className="moves">
           <ul>
-            <li>| mega-punch |</li>
-            <li>| fire-punch |</li>
-            <li>| thunder-punch |</li>
-            <li>| scratch |</li>
             <li>| swords-dance |</li>
             <li>| cut |</li>
             <li>| wing-attack |</li>
           </ul>
         </div>
+        {/* <div>{data.types}</div> */}
       </div>
     </>
   );
