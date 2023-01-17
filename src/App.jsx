@@ -28,9 +28,7 @@ const reducer = (state, action) => {
 
 export default function App() {
   const [data, setData] = useState();
-  const [favorite, setFavorite] = useState([]);
   const [name, setName] = useState();
-  const [num, setNum] = useState(10);
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
   const [theme, setTheme] = useState("light");
   const themeToggler = () => {
@@ -69,17 +67,11 @@ export default function App() {
                 onChange={(event) => setName(event.target.value.toLowerCase())}
                 onKeyPress={searchPokemon}
               />
-              <input
-                type="number"
-                className="moveNum"
-                placeholder="# moves displayed"
-                onChange={(event) => setNum(event.target.value)}
-              />
               <button className="search" onClick={searchPokemon}>
                 SEARCH
               </button>
             </div>
-            <button className="fav">Favorite</button>
+            {/* <button className="fav">Favorite</button> */}
           </div>
           <div className="title">
             <img
