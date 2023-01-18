@@ -71,7 +71,6 @@ export default function App() {
                 SEARCH
               </button>
             </div>
-            {/* <button className="fav">Favorite</button> */}
           </div>
           <div className="title">
             <img
