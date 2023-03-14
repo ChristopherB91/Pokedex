@@ -44,7 +44,6 @@ export default function App() {
         setData(response.data);
       });
     }
-    event.target.value = '';
   };
 
   const [numCount, dispatch] = useReducer(reducer, initialstate.num);

@@ -1,5 +1,12 @@
+/* img,picture, svg, video{
+  display: block;
+  max-width: 100%;
+} */
+
 *{
-  text-transform: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
 }
 
 .header {
@@ -27,8 +34,8 @@
 }
 
 .titlePic {
-  height: auto;
-  width: 45%;
+  display: block;
+  max-width: 100%;
 }
 
 .picture,
