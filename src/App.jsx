@@ -44,6 +44,7 @@ export default function App() {
         setData(response.data);
       });
     }
+    event.target.value = '';
   };
 
   const [numCount, dispatch] = useReducer(reducer, initialstate.num);
@@ -65,7 +66,7 @@ export default function App() {
                 className="searchBar"
                 placeholder="Enter a pokemon name"
                 onChange={(event) => setName(event.target.value.toLowerCase())}
-                onKeyPress={searchPokemon}
+                onKeyDown={searchPokemon}
               />
               <button className="search" onClick={searchPokemon}>
                 SEARCH

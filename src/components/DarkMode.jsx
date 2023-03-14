@@ -3,6 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const lightTheme = {
   body: "#fff",
   fontColor: "#000",
+  button: 'black',
+  buttonColor: 'white',
 };
 
 export const darkTheme = {
